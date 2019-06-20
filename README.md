@@ -3,10 +3,10 @@ fueled by insomnia
 
 ### stage 1 - file aggregation
 - [ ] ceres
-- [ ] deimos
+- [x] deimos
 - [ ] enkelade
-- [x] redpad
-- [ ] phone
+- [ ] redpad
+- [x] phone
 
 ### stage 2 - handler scripts
 - [ ] installer
