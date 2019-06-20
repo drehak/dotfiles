@@ -1,10 +1,14 @@
-syntax on
-set tabstop=4
-set shiftwidth=4
-set autoindent
 set number
-
-" Press Space to turn off highlighting and clear any message already displayed.
-:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 set tabpagemax=100
-set showcmd
+"set ts=4 sw=4
+set ts=4 sts=4 sw=4 expandtab
+set autoindent
+
+" bash aliases and functions (mainly for my1mt)
+let $BASH_ENV = "~/.bash_aliases"
+
+" colors for man pages
+let $PAGER = 'most'
+
+" bind w!! to get sudo rights and save file
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
