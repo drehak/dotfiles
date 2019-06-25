@@ -4,8 +4,8 @@ fueled by insomnia
 ### stage 1 - file aggregation
 - [ ] ceres
 - [x] deimos
-- [ ] enkelade
-- [ ] redpad
+- [x] enkelade
+- [x] redpad
 - [x] phone
 
 ### stage 2 - handler scripts
