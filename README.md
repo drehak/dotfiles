@@ -4,8 +4,8 @@ fueled by insomnia
 ### stage 1 - file aggregation
 - [ ] ceres
 - [x] deimos
-- [ ] enkelade
-- [ ] redpad
+- [x] enkelade
+- [x] redpad
 - [x] phone
 
 ### stage 2 - handler scripts
@@ -14,11 +14,11 @@ fueled by insomnia
 - [ ] conditional blocks by system queries
 
 ### stage 3 - unification / consolidation
-- [ ] universal branch
+- [x] universal branch
 - [ ] ceres
 - [ ] deimos
 - [ ] enkelade
-- [ ] redpad
+- [x] redpad
 - [ ] phone
 
 ### stage 4 - beyond? (likely not)
