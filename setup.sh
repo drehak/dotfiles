@@ -5,6 +5,10 @@ S=$(tput bold)$(tput setaf 3)  # skipped - yellow
 F=$(tput bold)$(tput setaf 1)  # failed - red
 R=$(tput sgr0)                 # reset
 
+count_I=0
+count_S=0
+count_F=0
+
 backup() {
     # copies file at $1 to first suitable filename
     # return: 0 = installed, 1 = failed, 2 = skipped, 3 = doesn't exist
@@ -62,7 +66,7 @@ install() {
 install_if_exists() {
     # copies file at $2 to $3 if the command at $1 exists
     # return: 2 if not installed, else passed from `install`
-    if command -v "$1"; then
+    if command -v "$1" >/dev/null; then
         install "$2" "$3"
         return "$?"
     else
@@ -71,24 +75,6 @@ install_if_exists() {
     fi
 }
 
-# just a test
-mkdir testhome
-echo this kills the frog > testhome/topkek
-for pass in 0 1 2; do
-    echo >&2 "--- pass #$pass"
-    echo >&2
-    install files/bashrc testhome/.bashrc
-    echo >&2
-    install_if_exists vim files/vimrc testhome/.vimrc
-    echo >&2
-    install_if_exists wim files/vimrc testhome/.vimrc
-    echo >&2
-    install files/redshift.conf testhome/topkek
-    echo >&2
-    install files/redshift.conf testhome/top/kek
-    echo >&2
-    install files/bashrc files/bashrc
-    echo >&2
-done
-echo >&2 "--- cleaning up"
-rm -rf testhome
+install files/bashrc ~/.bashrc
+install_if_exists vim files/vimrc ~/.vimrc
+install_if_exists redshift files/redshift.conf ~/.redshift.conf
