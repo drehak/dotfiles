@@ -59,6 +59,18 @@ install() {
     return 0
 }
 
+install_if_exists() {
+    # copies file at $2 to $3 if the command at $1 exists
+    # return: 2 if not installed, else passed from `install`
+    if command -v "$1"; then
+        install "$2" "$3"
+        return "$?"
+    else
+        echo -e >&2 "$S$2: $1 is not installed, skipping$R"
+        return 2
+    fi
+}
+
 # just a test
 mkdir testhome
 echo this kills the frog > testhome/topkek
@@ -67,7 +79,9 @@ for pass in 0 1 2; do
     echo >&2
     install files/bashrc testhome/.bashrc
     echo >&2
-    install files/vimrc testhome/.vimrc
+    install_if_exists vim files/vimrc testhome/.vimrc
+    echo >&2
+    install_if_exists wim files/vimrc testhome/.vimrc
     echo >&2
     install files/redshift.conf testhome/topkek
     echo >&2
