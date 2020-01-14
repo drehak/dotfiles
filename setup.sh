@@ -5,7 +5,6 @@ if command -v tput >/dev/null; then
     S=$(tput bold)$(tput setaf 3)  # skipped - yellow
     F=$(tput bold)$(tput setaf 1)  # failed - red
     R=$(tput sgr0)                 # reset
-    alias echo="echo -e"
 else
     I=":) "
     S="   "
@@ -56,7 +55,8 @@ install() {
     # copies file at $1 to $2
     # return: 0 = installed, 1 = failed, 2 = skipped
     if [ ! -r "$1" ]; then
-        echo >&2 "$F$1: can't read file$R\n"
+        echo >&2 "$F$1: can't read file$R"
+        echo
         count_F=$((count_F+1))
         return 1
     fi
@@ -64,21 +64,25 @@ install() {
     backup "$2"
     result="$?"
     if [ "$result" -eq 1 ]; then
-        echo >&2 "$F$1: failed to backup - aborting install$R\n"
+        echo >&2 "$F$1: failed to backup - aborting install$R"
+        echo
         count_F=$((count_F+1))
         return 1
     elif [ "$result" -eq 2 ]; then
-        echo >&2 "$S$1: last backup does not differ - skipping install$R\n"
+        echo >&2 "$S$1: last backup does not differ - skipping install$R"
+        echo
         count_S=$((count_S+1))
         return 2
     fi
 
     cp "$1" "$2" || {
-        echo >&2 "$F$1: failed to install to $2$R\n"
+        echo >&2 "$F$1: failed to install to $2$R"
+        echo
         count_F=$((count_F+1))
         return 1
     }
-    echo >&2 "$I$1: installed to $2$R\n"
+    echo >&2 "$I$1: installed to $2$R"
+    echo
     count_I=$((count_I+1))
     return 0
 }
@@ -90,7 +94,8 @@ install_if_exists() {
         install "$2" "$3"
         return "$?"
     else
-        echo >&2 "$S$2: $1 is not installed, skipping$R\n"
+        echo >&2 "$S$2: $1 is not installed, skipping$R"
+        echo
         count_S=$((count_S+1))
         return 2
     fi
