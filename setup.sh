@@ -56,17 +56,22 @@ install() {
     # copies file at $1 to $2
     # return: 0 = installed, 1 = failed, 2 = skipped
     if [ ! -r "$1" ]; then
-        echo >&2 "$F$1: can't read file$R"
+        echo >&2 "$F$1: can't read file$R\n"
         return 1
     fi
 
     backup "$2"
-    if [ "$?" -eq 1 ]; then
+    result="$?"
+    if [ "$result" -eq 1 ]; then
+        echo >&2 "$F$1: failed to backup - aborting install$R\n"
         return 1
+    elif [ "$result" -eq 2 ]; then
+        echo >&2 "$S$1: last backup does not differ - skipping install$R\n"
+        return 2
     fi
 
-    cp "$1" "$2" || { echo >&2 "$F$1: failed to install to $2$R"; return 1; }
-    echo >&2 "$I$1: installed to $2$R"
+    cp "$1" "$2" || { echo >&2 "$F$1: failed to install to $2$R\n"; return 1; }
+    echo >&2 "$I$1: installed to $2$R\n"
     return 0
 }
 
