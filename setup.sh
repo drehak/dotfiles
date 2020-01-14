@@ -57,6 +57,7 @@ install() {
     # return: 0 = installed, 1 = failed, 2 = skipped
     if [ ! -r "$1" ]; then
         echo >&2 "$F$1: can't read file$R\n"
+        count_F=$((count_F+1))
         return 1
     fi
 
@@ -64,14 +65,21 @@ install() {
     result="$?"
     if [ "$result" -eq 1 ]; then
         echo >&2 "$F$1: failed to backup - aborting install$R\n"
+        count_F=$((count_F+1))
         return 1
     elif [ "$result" -eq 2 ]; then
         echo >&2 "$S$1: last backup does not differ - skipping install$R\n"
+        count_S=$((count_S+1))
         return 2
     fi
 
-    cp "$1" "$2" || { echo >&2 "$F$1: failed to install to $2$R\n"; return 1; }
+    cp "$1" "$2" || {
+        echo >&2 "$F$1: failed to install to $2$R\n"
+        count_F=$((count_F+1))
+        return 1
+    }
     echo >&2 "$I$1: installed to $2$R\n"
+    count_I=$((count_I+1))
     return 0
 }
 
@@ -82,7 +90,8 @@ install_if_exists() {
         install "$2" "$3"
         return "$?"
     else
-        echo >&2 "$S$2: $1 is not installed, skipping$R"
+        echo >&2 "$S$2: $1 is not installed, skipping$R\n"
+        count_S=$((count_S+1))
         return 2
     fi
 }
@@ -90,3 +99,7 @@ install_if_exists() {
 install files/bashrc ~/.bashrc
 install_if_exists vim files/vimrc ~/.vimrc
 install_if_exists redshift files/redshift.conf ~/.redshift.conf
+
+[ $count_I -gt 0 ] && echo >&2 "$I$count_I installed$R"
+[ $count_S -gt 0 ] && echo >&2 "$S$count_S skipped$R"
+[ $count_F -gt 0 ] && echo >&2 "$F$count_F failed$R"
