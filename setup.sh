@@ -2,11 +2,13 @@
 
 if command -v tput >/dev/null; then
     I=$(tput bold)$(tput setaf 2)  # installed - green
+    B=$(tput bold)$(tput setaf 6)  # backed up - cyan
     S=$(tput bold)$(tput setaf 3)  # skipped - yellow
     F=$(tput bold)$(tput setaf 1)  # failed - red
     R=$(tput sgr0)                 # reset
 else
     I=":) "
+    B="B) "
     S="   "
     F=":( "
 fi
@@ -41,7 +43,7 @@ backup() {
                 return 2
             fi
             cp "$1" "$dst"
-            echo >&2 "$I$1: backed up to $dst$R"
+            echo >&2 "$B$1: backed up to $dst$R"
             return 0
         fi
         local last="$dst"
@@ -56,14 +58,12 @@ install() {
     # return: 0 = installed, 1 = failed, 2 = skipped
     if [ ! -r "$1" ]; then
         echo >&2 "$F$1: can't read file$R"
-        echo
         count_F=$((count_F+1))
         return 1
     fi
 
     if [ -r "$2" ] && diff -q "$1" "$2" >/dev/null; then
         echo >&2 "$S$1: destination $2 does not differ - skipping$R"
-        echo
         count_S=$((count_S+1))
         return 2
     fi
@@ -72,24 +72,20 @@ install() {
     result="$?"
     if [ "$result" -eq 1 ]; then
         echo >&2 "$F$1: failed to backup - aborting$R"
-        echo
         count_F=$((count_F+1))
         return 1
     elif [ "$result" -eq 2 ]; then
         echo >&2 "$S$1: last backup does not differ - skipping$R"
-        echo
         count_S=$((count_S+1))
         return 2
     fi
 
     cp "$1" "$2" || {
         echo >&2 "$F$1: failed to install to $2$R"
-        echo
         count_F=$((count_F+1))
         return 1
     }
     echo >&2 "$I$1: installed to $2$R"
-    echo
     count_I=$((count_I+1))
     return 0
 }
@@ -102,7 +98,6 @@ install_if_exists() {
         return "$?"
     else
         echo >&2 "$S$2: $1 is not installed - skipping$R"
-        echo
         count_S=$((count_S+1))
         return 2
     fi
@@ -112,6 +107,7 @@ install files/bashrc ~/.bashrc
 install_if_exists vim files/vimrc ~/.vimrc
 install_if_exists redshift files/redshift.conf ~/.redshift.conf
 
+echo >&2
 [ $count_I -gt 0 ] && echo >&2 "$I$count_I installed$R"
 [ $count_S -gt 0 ] && echo >&2 "$S$count_S skipped$R"
 [ $count_F -gt 0 ] && echo >&2 "$F$count_F failed$R"
