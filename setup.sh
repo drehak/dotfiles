@@ -39,7 +39,6 @@ backup() {
         esac
         if [ ! -e "$dst" ]; then
             if [ -n "$last" ] && diff -q "$1" "$last" >/dev/null; then
-                # echo >&2 "$S$1: last backup $last does not differ - skipping backup$R"
                 return 2
             fi
             cp "$1" "$dst"
@@ -103,9 +102,9 @@ install_if_exists() {
     fi
 }
 
-install files/bashrc ~/.bashrc
-install_if_exists vim files/vimrc ~/.vimrc
-install_if_exists redshift files/redshift.conf ~/.redshift.conf
+install_if_exists  bash      files/bashrc         ~/.bashrc
+install_if_exists  vim       files/vimrc          ~/.vimrc
+install_if_exists  redshift  files/redshift.conf  ~/.redshift.conf
 
 echo >&2
 [ $count_I -gt 0 ] && echo >&2 "$I$count_I installed$R"

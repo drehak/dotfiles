@@ -1,50 +1,44 @@
+#!/bin/bash
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-# No pager for systemctl
-export SYSTEMD_PAGER=
-
-# User specific aliases and functions
-alias vimrc="vim ~/.vimrc"
-alias cal="cal -m"
-
-alias dnfi="sudo dnf install"
-alias dnfr="sudo dnf remove"
-alias dnfs="dnf search"
-alias dnfu="sudo dnf update"
-
-branch() {
-  git branch &>/dev/null && echo "($(git rev-parse --abbrev-ref HEAD)) "
-}
-export PS1='\[\e[97m\]\u\[\e[91m\]@\[\e[97m\]\h \[\e[92m\]$(branch)\[\e[96m\]\w\[\e[m\] '
-
 # Unlimited history
 export HISTFILESIZE=
 export HISTSIZE=
 
-# Colored man pages
-PAGER=most
-alias man="PAGER=$PAGER man"
-alias sfdoc="PAGER=$PAGER sfdoc"
+exists() {
+    command -v "$1" >/dev/null
+    return $?
+}
 
-# ipu colors
-export PRETTY="color"
+if exists git; then
+    headhash() {  # $1 = max characters
+        git branch &>/dev/null && echo "$(git rev-parse HEAD | head -c $1) "
+    }
+    headbranch() {
+        git branch &>/dev/null && echo "$(git rev-parse --abbrev-ref HEAD) "
+    }
+    export PS1='\[\e[97m\]\u\[\e[91m\]@\[\e[97m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] '
+else
+    export PS1='\[\e[97m\]\u\[\e[91m\]@\[\e[97m\]\h \[\e[96m\]\w\[\e[m\] '
+fi
 
-# previously: alias bashrc="vim ~/.bashrc"
+if exists vim; then
+    export EDITOR=vim
+else
+    export EDITOR=vi  # I mean, it's almost everywhere
+fi
+
 bashrc() {
     local path="$HOME/.bashrc"
-    vim "$path"
+    $EDITOR "$path"
     >&2 echo "Reloading bashrc"
     source "$path"
 }
 
-stopwatch() {
-    date1=`date +%s`; while true; do
-        echo -ne "$(date -u --date @$((`date +%s` - $date1)) +%H:%M:%S)\r";
-    done
-}
+######### WORKS WITH COREUTILS #########
 
 mkcdir () {
     mkdir -p -- "$1" && cd -P -- "$1"
@@ -54,24 +48,76 @@ cdp () {
     cd -P -- "$1" 
 }
 
-src () {
-    vim $(which "$1") 
+stopwatch() {
+    date1=$(date +%s); while true; do
+        echo -ne "$(date -u --date @$(($(date +%s) - date1)) +%H:%M:%S)\r";
+    done
 }
 
-hisgrep () {
-    history | grep "$@"
-}
+####### CONDITIONAL DECLARATIONS #######
 
-ghclone () {
-    git clone "https://github.com/$1/$2"
-}
+if exists systemctl; then
+    # No pager for systemctl
+    export SYSTEMD_PAGER=
+fi
 
-rover () {
-    firefox --new-tab "https://rover.redhat.com/people/profile/$1"
-}
+if exists vim; then
+    alias vimrc="vim ~/.vimrc"
+fi
 
-# no cows!
-export ANSIBLE_NOCOWS=1
+if exists cal; then
+    alias cal="cal -m"
+fi
 
-alias pesdb='sudo docker start pesdb'
-alias django='PES_DEVEL=1 ./manage.py'
+if exists dnf; then
+    alias dnfi="sudo dnf install"
+    alias dnfr="sudo dnf remove"
+    alias dnfs="dnf search"
+    alias dnfu="sudo dnf update"
+fi
+
+if exists most; then
+    # Color manual pages
+    if exists man; then
+        alias man="PAGER=most man"
+    fi
+    if exists sfdoc; then
+        alias sfdoc="PAGER=most sfdoc"
+    fi
+fi
+
+if exists morf; then
+    # morf colors
+    export PRETTY="color"
+fi
+
+if exists which; then
+    src () {
+        $EDITOR $(which "$1") 
+    }
+fi
+
+if exists grep; then
+    hisgrep () {
+        history | grep "$@"
+    }
+fi
+
+if exists git; then
+    ghclone () {
+        git clone "https://github.com/$1/$2"
+    }
+fi
+
+if [ "$HOSTNAME" = redpad ]; then
+    rover () {
+        firefox --new-tab "https://rover.redhat.com/people/profile/$1"
+    }
+    alias pesdb='sudo docker start pesdb'
+    alias django='PES_DEVEL=1 ./manage.py'
+fi
+
+if exists ansible; then
+    # no cows!
+    export ANSIBLE_NOCOWS=1
+fi
