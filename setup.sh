@@ -61,15 +61,22 @@ install() {
         return 1
     fi
 
+    if [ -r "$2" ] && diff -q "$1" "$2" >/dev/null; then
+        echo >&2 "$S$1: destination $2 does not differ - skipping$R"
+        echo
+        count_S=$((count_S+1))
+        return 2
+    fi
+
     backup "$2"
     result="$?"
     if [ "$result" -eq 1 ]; then
-        echo >&2 "$F$1: failed to backup - aborting install$R"
+        echo >&2 "$F$1: failed to backup - aborting$R"
         echo
         count_F=$((count_F+1))
         return 1
     elif [ "$result" -eq 2 ]; then
-        echo >&2 "$S$1: last backup does not differ - skipping install$R"
+        echo >&2 "$S$1: last backup does not differ - skipping$R"
         echo
         count_S=$((count_S+1))
         return 2
@@ -94,7 +101,7 @@ install_if_exists() {
         install "$2" "$3"
         return "$?"
     else
-        echo >&2 "$S$2: $1 is not installed, skipping$R"
+        echo >&2 "$S$2: $1 is not installed - skipping$R"
         echo
         count_S=$((count_S+1))
         return 2
