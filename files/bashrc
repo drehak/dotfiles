@@ -169,11 +169,37 @@ if exists wifi-menu; then
 fi
 
 if exists youtube-dl; then
-    alias ytrip='youtube-dl --extract-audio --add-metadata --audio-format vorbis'
+    alias ytd='youtube-dl'
+    alias ytx='youtube-dl --extract-audio --add-metadata --audio-format vorbis'
 fi
 
 if [ "$HOSTNAME" = deimos -o "$HOSTNAME" = enceladus ]; then
     export PS1='\[\e[93m\]\u\[\e[m\]@\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] \[\e[93m\]\\$\[\e[m\] '
+fi
+
+if [ "$HOSTNAME" = localhost ]; then  # probably termux
+    export PS1='\[\e[93m\]$(headhash 4)\[\e[92m\]$(headbranch)\[\e[93m\]\w\[\e[m\] \[\e[96m\]\\$\[\e[m\] '
+    n() {
+         local threshold=16
+         local file=~/notes
+         local lines
+
+         if [ "$1" != "" ]; then
+              echo "$@" >> $file
+              return 0
+         fi
+         if [ ! -f $file ]; then
+              echo " === no notes ==="
+              return 1
+         fi
+         lines=$(cat $file | wc -l)
+         if [ $(( $lines > $threshold )) = 1 ]; then
+              echo " === last $threshold lines ==="
+         fi
+         tail -n $threshold $file
+         return 0
+    }
+
 fi
 
 if [ "$HOSTNAME" = redpad ]; then
