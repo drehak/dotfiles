@@ -40,12 +40,12 @@ bashrc() {
 
 ######### WORKS WITH COREUTILS #########
 
-mkcdir () {
-    mkdir -p -- "$1" && cd -P -- "$1"
-}
-
 cdp () {
     cd -P -- "$1" 
+}
+
+mkcdir () {
+    mkdir -p -- "$1" && cd -P -- "$1"
 }
 
 stopwatch() {
@@ -56,13 +56,9 @@ stopwatch() {
 
 ####### CONDITIONAL DECLARATIONS #######
 
-if exists systemctl; then
-    # No pager for systemctl
-    export SYSTEMD_PAGER=
-fi
-
-if exists vim; then
-    alias vimrc="vim ~/.vimrc"
+if exists ansible; then
+    # no cows!
+    export ANSIBLE_NOCOWS=1
 fi
 
 if exists cal; then
@@ -74,27 +70,6 @@ if exists dnf; then
     alias dnfr="sudo dnf remove"
     alias dnfs="dnf search"
     alias dnfu="sudo dnf update"
-fi
-
-if exists most; then
-    # Color manual pages
-    if exists man; then
-        alias man="PAGER=most man"
-    fi
-    if exists sfdoc; then
-        alias sfdoc="PAGER=most sfdoc"
-    fi
-fi
-
-if exists morf; then
-    # morf colors
-    export PRETTY="color"
-fi
-
-if exists which; then
-    src () {
-        $EDITOR $(which "$1") 
-    }
 fi
 
 if exists grep; then
@@ -109,15 +84,40 @@ if exists git; then
     }
 fi
 
+if exists morf; then
+    # morf colors
+    export PRETTY="color"
+fi
+
+if exists most; then
+    # Color manual pages
+    if exists man; then
+        alias man="PAGER=most man"
+    fi
+    if exists sfdoc; then
+        alias sfdoc="PAGER=most sfdoc"
+    fi
+fi
+
+if exists systemctl; then
+    # No pager for systemctl
+    export SYSTEMD_PAGER=
+fi
+
+if exists vim; then
+    alias vimrc="vim ~/.vimrc"
+fi
+
+if exists which; then
+    src () {
+        $EDITOR $(which "$1") 
+    }
+fi
+
 if [ "$HOSTNAME" = redpad ]; then
     rover () {
         firefox --new-tab "https://rover.redhat.com/people/profile/$1"
     }
     alias pesdb='sudo docker start pesdb'
     alias django='PES_DEVEL=1 ./manage.py'
-fi
-
-if exists ansible; then
-    # no cows!
-    export ANSIBLE_NOCOWS=1
 fi
