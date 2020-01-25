@@ -10,6 +10,8 @@ fi
 # Unlimited history
 export HISTFILESIZE=
 export HISTSIZE=
+shopt -s histappend
+shopt -s checkwinsize
 
 exists() {
     command -v "$1" >/dev/null
@@ -67,6 +69,11 @@ fi
 
 if exists cal; then
     alias cal="cal -m"
+fi
+
+if exists clang; then
+    export CC=clang
+    export CXX=clang++
 fi
 
 if exists curl; then
@@ -165,7 +172,7 @@ if exists youtube-dl; then
     alias ytrip='youtube-dl --extract-audio --add-metadata --audio-format vorbis'
 fi
 
-if [ "$HOSTNAME" = enceladus ]; then
+if [ "$HOSTNAME" = deimos -o "$HOSTNAME" = enceladus ]; then
     export PS1='\[\e[93m\]\u\[\e[m\]@\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] \[\e[93m\]\\$\[\e[m\] '
 fi
 

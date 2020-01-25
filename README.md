@@ -16,7 +16,7 @@ fueled by insomnia
 ### stage 3 - unification / consolidation
 - [x] universal branch
 - [ ] ceres
-- [ ] deimos
+- [x] deimos
 - [x] enkelade
 - [x] redpad
 - [ ] phone
