@@ -28,14 +28,14 @@ backup() {
         return 1
     fi
 
-    local day=$(date '+%Y%m%d')
+    day=$(date '+%Y%m%d')
     for n in $(seq -w 0 999); do
         # always start destination name with a dot
-        local bn="$(basename $1)"
-        local dn="$(dirname $1)"
+        bn="$(basename "$1")"
+        dn="$(dirname "$1")"
         case "$bn" in
-            .*)  local dst="$dn/$bn.$day.$n"   ;;
-            *)   local dst="$dn/.$bn.$day.$n"  ;;
+            .*)  dst="$dn/$bn.$day.$n"   ;;
+            *)   dst="$dn/.$bn.$day.$n"  ;;
         esac
         if [ ! -e "$dst" ]; then
             if [ -n "$last" ] && diff -q "$1" "$last" >/dev/null; then
@@ -45,7 +45,7 @@ backup() {
             echo >&2 "$B$1: backed up to $dst$R"
             return 0
         fi
-        local last="$dst"
+        last="$dst"
     done
         
     echo >&2 "$F$1: could not backup - exhausted suffixes?$R"
