@@ -3,6 +3,9 @@
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
 
 # Unlimited history
 export HISTFILESIZE=
@@ -54,6 +57,7 @@ stopwatch() {
     done
 }
 
+
 ####### CONDITIONAL DECLARATIONS #######
 
 if exists ansible; then
@@ -63,6 +67,10 @@ fi
 
 if exists cal; then
     alias cal="cal -m"
+fi
+
+if exists curl; then
+    alias myip='curl ipinfo.io/ip'
 fi
 
 if exists dnf; then
@@ -79,9 +87,17 @@ if exists grep; then
 fi
 
 if exists git; then
+    alias gits='git status'
+    alias gitas='git add . && git status'
+    alias oneline='git log --oneline'
     ghclone () {
         git clone "https://github.com/$1/$2"
     }
+fi
+
+if exists i3; then
+    alias i3c='vim ~/.i3/config'
+    alias i3sc='vim ~/.i3status.conf'
 fi
 
 if exists morf; then
@@ -99,12 +115,39 @@ if exists most; then
     fi
 fi
 
+if exists pacman; then
+    alias Syu='sudo pacman -Syu'
+    alias Scc='sudo pacman -Scc'
+    alias Sc='sudo pacman -Sc'
+    alias Ss='pacman -Ss'
+    alias S='sudo pacman -S'
+    alias R='sudo pacman -R'
+fi
+
+if exists python3; then
+    alias py3='python3'
+fi
+
+if exists rtorrent; then
+    stty stop undef
+    stty start undef
+fi
+
+if exists sudo; then
+    alias fuck='sudo $(history -p \!\!)'
+fi
+
 if exists systemctl; then
     # No pager for systemctl
     export SYSTEMD_PAGER=
 fi
 
+if exists tmux; then
+    alias tmuxrc='vim ~/.tmux.conf'
+fi
+
 if exists vim; then
+    alias vimp='vim -p *'
     alias vimrc="vim ~/.vimrc"
 fi
 
@@ -112,6 +155,18 @@ if exists which; then
     src () {
         $EDITOR $(which "$1") 
     }
+fi
+
+if exists wifi-menu; then
+    alias wifi-menu='sudo wifi-menu'
+fi
+
+if exists youtube-dl; then
+    alias ytrip='youtube-dl --extract-audio --add-metadata --audio-format vorbis'
+fi
+
+if [ "$HOSTNAME" = enceladus ]; then
+    export PS1='\[\e[93m\]\u\[\e[m\]@\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] \[\e[93m\]\\$\[\e[m\] '
 fi
 
 if [ "$HOSTNAME" = redpad ]; then

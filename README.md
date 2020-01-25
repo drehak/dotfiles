@@ -10,14 +10,14 @@ fueled by insomnia
 
 ### stage 2 - handler scripts
 - [ ] installer
-- [ ] conditional blocks by hostname
-- [ ] conditional blocks by system queries
+- [x] conditional blocks by hostname
+- [x] conditional blocks by system queries
 
 ### stage 3 - unification / consolidation
 - [x] universal branch
 - [ ] ceres
 - [ ] deimos
-- [ ] enkelade
+- [x] enkelade
 - [x] redpad
 - [ ] phone
 
