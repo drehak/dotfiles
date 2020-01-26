@@ -49,6 +49,8 @@ cdp () {
     cd -P -- "$1" 
 }
 
+alias ls="ls --color=auto"
+
 mkcdir () {
     mkdir -p -- "$1" && cd -P -- "$1"
 }
@@ -147,6 +149,10 @@ fi
 if exists systemctl; then
     # No pager for systemctl
     export SYSTEMD_PAGER=
+fi
+
+if exists tmux; then
+    alias tree="tree --color=auto"
 fi
 
 if exists tmux; then
