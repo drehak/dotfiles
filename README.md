@@ -1,28 +1,11 @@
-# drehak's personal dotfiles
-fueled by insomnia
+# My personal dotfiles + a minimal installer with backups
+This is a collection of the configuration files I use. Included at the moment are configs for __bash__, __vim__ and __redshift__. This repo includes a simple installer, as well as the option to include configs of your own. The installer is 100% written in pure POSIX-compliant sh.
 
-### stage 1 - file aggregation
-- [ ] ceres
-- [x] deimos
-- [x] enkelade
-- [x] redpad
-- [x] phone
+## Instalation and usage
+To install all contained configs, simply run:
 
-### stage 2 - handler scripts
-- [ ] installer
-- [x] conditional blocks by hostname
-- [x] conditional blocks by system queries
+`./setup.sh`
 
-### stage 3 - unification / consolidation
-- [x] universal branch
-- [ ] ceres
-- [x] deimos
-- [x] enkelade
-- [x] redpad
-- [ ] phone
+This also creates backups - each file to be overwritten is copied to its own file. Progress and stats are displayed too.
 
-### stage 4 - beyond? (likely not)
-- [ ] depersonalization
-- [ ] master branch for others to use
-- [ ] examples
-- [ ] documentation
+To supply your own files, put them in the `files` directory and then edit the directives in `install.sh`. Currently there are two: `install` and `install_if_exists`, more to be added.

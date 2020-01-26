@@ -102,9 +102,7 @@ install_if_exists() {
     fi
 }
 
-install_if_exists  bash      files/bashrc         ~/.bashrc
-install_if_exists  vim       files/vimrc          ~/.vimrc
-install_if_exists  redshift  files/redshift.conf  ~/.redshift.conf
+source ./install.sh
 
 echo >&2
 [ $count_I -gt 0 ] && echo >&2 "$I$count_I installed$R"
