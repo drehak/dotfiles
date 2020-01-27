@@ -90,6 +90,15 @@ if exists dnf; then
 fi
 
 if exists grep; then
+    greppy() {
+        while read -p $'\e[1;92m> \e[0;93m' expr; do
+            echo -n $'\e[m'
+            grep -nr "$expr"
+            echo
+        done
+        echo
+    }
+
     hisgrep () {
         history | grep "$@"
     }
@@ -152,11 +161,29 @@ if exists systemctl; then
 fi
 
 if exists tmux; then
-    alias tree="tree --color=auto"
+    alias tmuxrc='vim ~/.tmux.conf'
 fi
 
-if exists tmux; then
-    alias tmuxrc='vim ~/.tmux.conf'
+if exists tput; then
+    dims() {
+        echo "$(tput lines)x$(tput cols)"
+    }
+fi
+
+if exists tree; then
+    alias tree="tree -C"
+fi
+
+if exists tty-clock; then
+    alias tty-clock="tty-clock -cC 5"
+fi
+
+if exists vagrant; then
+    alias vscp='vagrant ssh'
+    alias vdes='vagrant destroy -f'
+    alias vssh='vagrant ssh'
+    alias vup='vagrant up'
+    alias vups='vagrant up && vagrant ssh'
 fi
 
 if exists vim; then
@@ -172,6 +199,10 @@ fi
 
 if exists wifi-menu; then
     alias wifi-menu='sudo wifi-menu'
+fi
+
+if exists xclip; then
+    alias xclip='xclip -selection c'
 fi
 
 if exists youtube-dl; then
@@ -205,7 +236,6 @@ if [ "$HOSTNAME" = localhost ]; then  # probably termux
          tail -n $threshold $file
          return 0
     }
-
 fi
 
 if [ "$HOSTNAME" = redpad ]; then
