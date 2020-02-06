@@ -1,0 +1,12 @@
+[user]
+	name = Dominik Rehák
+	email = drehak@redhat.com
+[color]
+	ui = auto
+[diff]
+	algorithm = minimal
+[alias]
+	co = checkout
+    patch = commit --amend --no-edit
+    fall = fetch --all
+    mbfp = merge-base --fork-point
