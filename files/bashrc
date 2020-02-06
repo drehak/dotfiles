@@ -90,10 +90,11 @@ if exists dnf; then
 fi
 
 if exists grep; then
+    alias grep="grep --color=auto"
     greppy() {
         while read -p $'\e[1;92m> \e[0;93m' expr; do
             echo -n $'\e[m'
-            grep -nr "$expr"
+            grep --color=auto -nr "$expr"
             echo
         done
         echo
