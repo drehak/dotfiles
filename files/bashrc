@@ -3,8 +3,12 @@
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+if ! shopt -oq posix; then
+    if [ -f /etc/bash_completion ]; then
+        . /etc/bash_completion
+    elif [ -f /usr/share/bash-completion/bash_completion ]; then
+        . /usr/share/bash-completion/bash_completion
+    fi
 fi
 
 # Unlimited history
@@ -20,7 +24,7 @@ exists() {
 
 if exists git; then
     headhash() {  # $1 = max characters
-        git branch &>/dev/null && echo "$(git rev-parse HEAD | head -c $1) "
+        git branch &>/dev/null && echo "$(git rev-parse HEAD | head -c "$1") "
     }
     headbranch() {
         git branch &>/dev/null && echo "$(git rev-parse --abbrev-ref HEAD) "
@@ -60,7 +64,6 @@ stopwatch() {
         echo -ne "$(date -u --date @$(($(date +%s) - date1)) +%H:%M:%S)\r";
     done
 }
-
 
 ####### CONDITIONAL DECLARATIONS #######
 
@@ -132,6 +135,16 @@ if exists most; then
     if exists sfdoc; then
         alias sfdoc="PAGER=most sfdoc"
     fi
+elif exists man; then
+    man() {
+        LESS_TERMCAP_md=$'\e[01;31m' \
+        LESS_TERMCAP_me=$'\e[0m' \
+        LESS_TERMCAP_se=$'\e[0m' \
+        LESS_TERMCAP_so=$'\e[01;44;33m' \
+        LESS_TERMCAP_ue=$'\e[0m' \
+        LESS_TERMCAP_us=$'\e[01;32m' \
+        command man "$@"
+    }
 fi
 
 if exists pacman; then
@@ -211,7 +224,7 @@ if exists youtube-dl; then
     alias ytx='youtube-dl --extract-audio --add-metadata --audio-format vorbis'
 fi
 
-if [ "$HOSTNAME" = deimos -o "$HOSTNAME" = enceladus ]; then
+if [ "$HOSTNAME" = deimos ] || [ "$HOSTNAME" = enceladus ]; then
     export PS1='\[\e[93m\]\u\[\e[m\]@\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] \[\e[93m\]\\$\[\e[m\] '
 fi
 
@@ -230,7 +243,7 @@ if [ "$HOSTNAME" = localhost ]; then  # probably termux
               echo " === no notes ==="
               return 1
          fi
-         lines=$(cat $file | wc -l)
+         lines=$(wc -l $file)
          if [ $(( $lines > $threshold )) = 1 ]; then
               echo " === last $threshold lines ==="
          fi

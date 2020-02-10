@@ -102,7 +102,7 @@ install_if_exists() {
     fi
 }
 
-source ./install.sh
+. ./install.sh
 
 echo >&2
 [ $count_I -gt 0 ] && echo >&2 "$I$count_I installed$R"
