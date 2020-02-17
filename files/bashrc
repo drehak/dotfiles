@@ -80,13 +80,19 @@ n() {
      return 0
 }
 
+# color stderr of a command in red
+# note: if interlaced with stdout, outputs may be slightly out of order
+rederr() {
+    "$@" 2> >(while read -r line; do echo -e "\e[31m$line\e[0m" >&2; done);
+}
+
 stopwatch() {
     date1=$(date +%s); while true; do
         echo -ne "$(date -u --date @$(($(date +%s) - date1)) +%H:%M:%S)\r";
     done
 }
 
-####### CONDITIONAL DECLARATIONS #######
+#### COMMAND DEPENDENT DECLARATIONS ####
 
 if exists ansible; then
     # no cows!
@@ -116,7 +122,7 @@ fi
 if exists grep; then
     alias grep="grep --color=auto"
     greppy() {
-        while read -p $'\e[1;92m> \e[0;93m' expr; do
+        while read -rp $'\e[1;92m> \e[0;93m' expr; do
             echo -n $'\e[m'
             grep --color=auto -nr "$expr"
             echo
@@ -228,7 +234,7 @@ fi
 
 if exists which; then
     src () {
-        $EDITOR $(which "$1") 
+        $EDITOR "$(which --skip-alias --skip-functions "$1")"
     }
 fi
 
@@ -245,6 +251,8 @@ if exists youtube-dl; then
     alias ytx='youtube-dl --extract-audio --add-metadata --audio-format vorbis'
 fi
 
+##### DEVICE SPECIFIC DECLARATIONS #####
+
 if [ "$HOSTNAME" = deimos ] || [ "$HOSTNAME" = enceladus ]; then
     export PS1='\[\e[93m\]\u\[\e[m\]@\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] \[\e[93m\]\\$\[\e[m\] '
 fi
@@ -259,4 +267,19 @@ if [ "$HOSTNAME" = redpad ]; then
     }
     alias pesdb='sudo docker start pesdb'
     alias django='PES_DEVEL=1 ./manage.py'
+fi
+
+if [[ "$HOSTNAME" =~ leapp-20* ]]; then  # leapp vagrant boxes
+    getPR() {
+        if [[ $(rpm -qa "$1") =~ (PR[0-9]+) ]]; then
+            echo "${BASH_REMATCH[1]:2}"
+            return 0
+        else
+            return 1
+        fi
+    }
+    PS1PREFIX='\[\e[96m\]'
+    FPR=$(getPR leapp) && PS1PREFIX="${PS1PREFIX}FPR:${FPR} "
+    RPR=$(getPR leapp-repository) && PS1PREFIX="${PS1PREFIX}RPR:${RPR} "
+    export PS1="$PS1PREFIX"'\[\e[97m\]\u\[\e[91m\]@\[\e[95m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] '
 fi
