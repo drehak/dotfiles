@@ -99,6 +99,13 @@ if exists ansible; then
     export ANSIBLE_NOCOWS=1
 fi
 
+if exists apt; then
+    alias apti="apt install"
+    alias aptp="apt remove --purge"
+    alias aptr="apt remove"
+    alias apts="apt search"
+fi
+
 if exists cal; then
     alias cal="cal -m"
 fi
