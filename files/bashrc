@@ -260,7 +260,7 @@ fi
 
 ##### DEVICE SPECIFIC DECLARATIONS #####
 
-if [ "$HOSTNAME" = aisa.fi.muni.cz ]; then
+if [ "$HOSTNAME" = aisa.fi.muni.cz ] || [[ "$HOSTNAME" =~ nymfe* ]]; then
     export PS1='\[\e[93m\]\u\[\e[m\]@\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] \[\e[93m\]\\$\[\e[m\] '
     . /packages/run/modules-2.0/init/bash 2>/dev/null
 
