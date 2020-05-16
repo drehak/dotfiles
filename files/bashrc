@@ -34,6 +34,14 @@ else
     export PS1='\[\e[97m\]\u\[\e[91m\]@\[\e[97m\]\h \[\e[96m\]\w\[\e[m\] '
 fi
 
+if exists qutebrowser; then
+    export BROWSER=qutebrowser
+elif exists firefox; then
+    export BROWSER=firefox
+elif exists palemoon; then
+    export BROWSER=palemoon
+fi
+
 if exists vim; then
     export EDITOR=vim
 else
@@ -154,6 +162,10 @@ fi
 if exists i3; then
     alias i3c='vim ~/.i3/config'
     alias i3sc='vim ~/.i3status.conf'
+fi
+
+if exists java; then
+    export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 fi
 
 if exists morf; then
