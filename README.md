@@ -1,5 +1,5 @@
 # My personal dotfiles + a minimal installer with backups
-This is a collection of the configuration files I use. Included at the moment are configs for __bash__, __vim__ and __redshift__. This repo includes a simple installer, as well as the option to include configs of your own. The installer is 100% written in pure POSIX-compliant sh.
+This is a collection of the configuration files I use. Included at the moment are configs for __bash__, __vim__, __redshift__ and __polybar__. This repo includes a simple installer, as well as the option to include configs of your own. The installer is 100% written in pure POSIX-compliant sh.
 
 ## Instalation and usage
 To install all contained configs, simply run:
