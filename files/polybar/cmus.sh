@@ -6,8 +6,8 @@ prepend_zero () {
     seq -f "%02g" $1 $1
 }
 
-artist=$(echo -n $(cmus-remote -C status | grep artist -m 1| cut -c 12-))
-song=$(echo -n $(cmus-remote -C status | grep title | cut -c 11-))
+artist=$(echo -n $(cmus-remote -C status | grep "tag artist" -m 1| cut -d ' ' -f 3-))
+song=$(echo -n $(cmus-remote -C status | grep "tag title" | cut -d ' ' -f 3-))
 
 position=$(cmus-remote -C status | grep position | cut -c 10-)
 minutes1=$(prepend_zero $(($position / 60)))
