@@ -64,7 +64,7 @@ font-3 = siji:pixelsize=10;1
 modules-left = i3
 modules-center = cmus
 ;modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
-modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature wttr date
+modules-right = filesystem xbacklight alsa xkeyboard memory cpu wlan eth battery temperature wttr date
 
 tray-position = right
 tray-padding = 0
@@ -118,7 +118,7 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-mount-1 = /media
+;mount-1 = /media
 
 label-mounted = %{F#0a81f5}%mountpoint%%{F-} %free%
 label-unmounted = %mountpoint% not mounted
@@ -350,20 +350,20 @@ format-discharging-underline = ${self.format-charging-underline}
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-0 = #
+ramp-capacity-1 = <
+ramp-capacity-2 = >
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 = #
+animation-charging-1 = <
+animation-charging-2 = >
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
+animation-discharging-0 = >
+animation-discharging-1 = <
+animation-discharging-2 = #
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
 
