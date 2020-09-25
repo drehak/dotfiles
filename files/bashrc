@@ -241,8 +241,9 @@ fi
 if exists vagrant; then
     alias vdes='vagrant destroy -f'
     alias vhalt='vagrant halt'
-    alias vscp='vagrant scp'
+    alias vscp='vagrant scp'  # needs the vagrant-scp plugin
     alias vssh='vagrant ssh'
+    alias vst='vagrant status'
     alias vup='vagrant up'
     alias vups='vagrant up && vagrant ssh'
 fi
@@ -250,6 +251,11 @@ fi
 if exists vim; then
     alias vimp='vim -p *'
     alias vimrc="vim ~/.vimrc"
+    if exists find; then
+        vimpy () {
+            vim -p $(find -iname '*.py')
+        }
+    fi
 fi
 
 if exists which; then
@@ -320,5 +326,3 @@ if [[ "$HOSTNAME" =~ leapp-20* ]]; then  # leapp vagrant boxes
     RPR=$(getPR leapp-repository) && PS1PREFIX="${PS1PREFIX}RPR:${RPR} "
     export PS1="$PS1PREFIX"'\[\e[97m\]\u\[\e[91m\]@\[\e[95m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] '
 fi
-
-export LOL=yes
