@@ -181,7 +181,7 @@ if exists most; then
     if exists sfdoc; then
         alias sfdoc="PAGER=most sfdoc"
     fi
-elif exists man; then
+elif exists man && [ "$(type -t cat)" != function ]; then
     man() {
         LESS_TERMCAP_md=$'\e[01;31m' \
         LESS_TERMCAP_me=$'\e[0m' \
@@ -253,7 +253,7 @@ if exists vim; then
     alias vimrc="vim ~/.vimrc"
     if exists find; then
         vimpy () {
-            vim -p $(find -iname '*.py')
+            vim -p $(find . -iname '*.py')
         }
     fi
 fi
