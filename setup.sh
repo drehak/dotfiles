@@ -108,3 +108,9 @@ echo >&2
 [ $count_I -gt 0 ] && echo >&2 "$I$count_I installed$R"
 [ $count_S -gt 0 ] && echo >&2 "$S$count_S skipped$R"
 [ $count_F -gt 0 ] && echo >&2 "$F$count_F failed$R"
+
+if [ $count_F -gt 0 ]; then
+    exit 1
+else
+    exit 0
+fi

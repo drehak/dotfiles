@@ -157,6 +157,9 @@ if exists git; then
     ghclone () {
         git clone "https://github.com/$1/$2"
     }
+    ghcld () {
+        ghclone "$1" "$2" && cd "$2"
+    }
 fi
 
 if exists i3; then
@@ -250,6 +253,7 @@ fi
 
 if exists vim; then
     alias vimp='vim -p *'
+    alias vimpp='vim -p *.[ch]pp'
     alias vimrc="vim ~/.vimrc"
     if exists find; then
         vimpy () {
