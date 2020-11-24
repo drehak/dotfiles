@@ -62,6 +62,7 @@ cdp () {
 }
 
 alias ls="ls --color=auto"
+alias ll="ls -l --color=auto"
 
 mkcdir () {
     mkdir -p -- "$1" && cd -P -- "$1"
@@ -171,6 +172,10 @@ if exists java; then
     export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
 fi
 
+if exists luarocks; then
+    eval $(luarocks path --bin)
+fi
+
 if exists morf; then
     # morf colors
     export PRETTY="color"
@@ -184,7 +189,7 @@ if exists most; then
     if exists sfdoc; then
         alias sfdoc="PAGER=most sfdoc"
     fi
-elif exists man && [ "$(type -t cat)" != function ]; then
+elif exists man && [ "$(type -t man)" != function ]; then
     man() {
         LESS_TERMCAP_md=$'\e[01;31m' \
         LESS_TERMCAP_me=$'\e[0m' \
@@ -249,6 +254,7 @@ if exists vagrant; then
     alias vst='vagrant status'
     alias vup='vagrant up'
     alias vups='vagrant up && vagrant ssh'
+    alias vdups='vagrant destroy -f && vagrant up && vagrant ssh'
 fi
 
 if exists vim; then
