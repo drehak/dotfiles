@@ -302,6 +302,10 @@ if [ "$HOSTNAME" = aisa.fi.muni.cz ] || [[ "$HOSTNAME" =~ nymfe* ]]; then
     module add gcovr-3.3
 fi
 
+if [[ "$HOSTNAME" = erigona.fi.muni.cz ]]; then
+    export PS1='\[\e[93m\]\u\[\e[m\]@\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] \[\e[93m\]\\$\[\e[m\] '
+fi
+
 if [ "$HOSTNAME" = deimos ] || [ "$HOSTNAME" = enceladus ]; then
     export PS1='\[\e[93m\]\u\[\e[m\]@\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] \[\e[93m\]\\$\[\e[m\] '
 fi
