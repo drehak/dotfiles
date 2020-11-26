@@ -336,3 +336,7 @@ if [[ "$HOSTNAME" =~ leapp-20* ]]; then  # leapp vagrant boxes
     RPR=$(getPR leapp-repository) && PS1PREFIX="${PS1PREFIX}RPR:${RPR} "
     export PS1="$PS1PREFIX"'\[\e[97m\]\u\[\e[91m\]@\[\e[95m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] '
 fi
+
+if [ "$HOSTNAME" = proto13-beta ]; then
+    export PS1='\[\e[97m\]\u\[\e[96m\]@\[\e[97m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[91m\]\w\[\e[m\] '
+fi
