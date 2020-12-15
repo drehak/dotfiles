@@ -10,3 +10,5 @@
     patch = commit --amend --no-edit
     fall = fetch --all
     mbfp = merge-base --fork-point
+[pull]
+    rebase = false

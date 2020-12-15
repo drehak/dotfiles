@@ -265,6 +265,9 @@ if exists vim; then
         vimpy () {
             vim -p $(find . -iname '*.py')
         }
+        vimlua () {
+            vim -p $(find . -iname '*.lua')
+        }
     fi
 fi
 
