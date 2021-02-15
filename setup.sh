@@ -1,6 +1,13 @@
 #!/bin/sh
 
-if command -v tput >/dev/null; then
+if [ ! -z ${OUTPUT+x} ]; then
+    if [ "$OUTPUT" != color ] && [ "$OUTPUT" != plain ]; then
+        echo "OUTPUT: invalid value \"$OUTPUT\" (supported: color, plain)"
+        exit 2
+    fi
+fi
+
+if [ "$OUTPUT" != plain ] && command -v tput >/dev/null; then
     I=$(tput bold)$(tput setaf 2)  # installed - green
     B=$(tput bold)$(tput setaf 6)  # backed up - cyan
     S=$(tput bold)$(tput setaf 3)  # skipped - yellow

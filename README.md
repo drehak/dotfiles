@@ -8,4 +8,6 @@ To install all contained configs, simply run:
 
 This also creates backups: for each file that would be overwritten by the setup, a copy is created in the file's directory, prefixed by `.` and suffixed by `.yyyymmdd.nnn`, where `nnn` starts at `000` and increments during a given day. Progress and stats are displayed too.
 
+By default, the output is colored, falling back to a plain output when `tput` is not detected. This can be overriden by setting the environment variable `OUTPUT` to either `color` or `plain`.
+
 To supply your own files, put them in the `files` directory and then edit the directives in `install.sh`. Currently there are two available directives - `install` and `install_if_exists`, more to be added.
