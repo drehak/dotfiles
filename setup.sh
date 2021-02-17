@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ ! -z ${OUTPUT+x} ]; then
+if [ -n "${OUTPUT+x}" ]; then
     if [ "$OUTPUT" != color ] && [ "$OUTPUT" != plain ]; then
         echo "OUTPUT: invalid value \"$OUTPUT\" (supported: color, plain)"
         exit 2
