@@ -269,6 +269,11 @@ if exists systemctl; then
     export SYSTEMD_PAGER=
 fi
 
+if exists task; then
+    alias t='task'
+    alias taskrc='vim ~/.taskrc'
+fi
+
 if exists tmux; then
     alias tmuxrc='vim ~/.tmux.conf'
 fi
