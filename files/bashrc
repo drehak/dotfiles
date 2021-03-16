@@ -70,6 +70,10 @@ cdp () {
 alias ls="ls --color=auto"
 alias ll="ls -l --color=auto"
 
+math() {
+    echo $(($@))
+}
+
 mkcdir () {
     mkdir -p -- "$1" && cd -P -- "$1"
 }
