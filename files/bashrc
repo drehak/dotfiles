@@ -264,6 +264,21 @@ if exists rtorrent; then
     stty start undef
 fi
 
+if exists sox; then
+    # generate a beep every 5 seconds (higher pitch every 20 seconds)
+    # the fine timing might be off on other machines
+    beepwatch() {
+        while :; do
+            play -n -c1 synth 0.1 sine 880
+            sleep 4.85
+            for n in 1 2 3; do
+                play -n -c1 synth 0.1 sine 440
+                sleep 4.85
+            done
+        done
+    }
+fi
+
 if exists sudo; then
     alias fuck='sudo $(history -p \!\!)'
 fi
