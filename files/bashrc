@@ -111,37 +111,6 @@ stopwatch() {
     done
 }
 
-lent() {
-    READINGS_FILE=~/readings
-    if [ ! -f $READINGS_FILE ]; then
-        echo >&2 "readings file $READINGS_FILE not found"
-        return 1
-    fi
-    LENT_START=$(date -d "2021-02-17" +%s)
-    LENT_END=$(date -d "2021-04-05" +%s)
-    NOW=$(date +%s)
-    if [ "$NOW" -lt "$LENT_START" ] || [ "$NOW" -gt "$LENT_END" ]; then
-        echo >&2 "It is not Lent 2021."
-        return 1
-    fi
-    DAY=$(( (NOW - LENT_START) / 86400 + 1 ))
-    echo "Day $DAY of Lent 2021"
-    READINGS=$(sed "${DAY}q;d" $READINGS_FILE)
-    if [ "$READINGS" == break ]; then
-        echo "It is Sunday, no readings for today."
-        return 0
-    elif [ "$READINGS" == easter ]; then
-        echo "Christ is risen, rejoice! No readings for today."
-        return 0
-    fi
-    echo "Readings for today are: $READINGS"
-    if [ -n "$BIBLE" ]; then
-        read -p "(Press Enter to continue...)"
-        $BIBLE "$READINGS"
-    fi
-    return 0
-}
-
 #### COMMAND DEPENDENT DECLARATIONS ####
 
 if exists ansible; then
