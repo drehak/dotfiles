@@ -2,7 +2,7 @@ config.load_autoconfig()
 
 c.fonts.default_family = 'Liberation Mono'
 
-c.content.host_blocking.lists.append(str(config.configdir) + '/blockedHosts')
+c.content.blocking.hosts.lists.append(str(config.configdir) + '/blockedHosts')
 
 c.tabs.position = 'left'
 c.tabs.width = '15%'
