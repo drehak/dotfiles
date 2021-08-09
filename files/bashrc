@@ -188,6 +188,7 @@ fi
 
 if exists luarocks; then
     eval $(luarocks path --bin)
+    export LUA_PATH="./?.lua;$LUA_PATH"
 fi
 
 if exists morf; then
