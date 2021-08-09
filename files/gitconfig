@@ -14,6 +14,7 @@
     cmm = commit -m
     cm = commit --verbose
     cma = commit --verbose --amend
+    dc = diff --cached
     fall = fetch --all
     lg = log --graph
     lga = log --graph --all
@@ -33,3 +34,5 @@
     mbfp = merge-base --fork-point  # the fuck was this
 [pull]
     rebase = false
+[log]
+    graphColors = bold red,bold green,bold yellow,bold blue,bold magenta,bold cyan,bold white
