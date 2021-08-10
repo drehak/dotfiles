@@ -352,7 +352,7 @@ if [ "$HOSTNAME" = localhost ]; then  # probably termux
     export PS1='\[\e[93m\]$(headhash 4)\[\e[92m\]$(headbranch)\[\e[93m\]\w\[\e[m\] \[\e[96m\]\\$\[\e[m\] '
 fi
 
-if [ "$HOSTNAME" = redpad ]; then
+if [ "$HOSTNAME" = redpad ] || [ "$HOSTNAME" = redtwo ]; then
     rover () {
         if [ "$BROWSER" = firefox ]; then
             $BROWSER --new-tab "https://rover.redhat.com/people/profile/$1"
