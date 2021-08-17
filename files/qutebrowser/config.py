@@ -2,11 +2,17 @@ config.load_autoconfig()
 
 c.fonts.default_family = 'Liberation Mono'
 
+c.content.blocking.method = 'both'
 c.content.blocking.hosts.lists.append(str(config.configdir) + '/blockedHosts')
 
 c.tabs.position = 'left'
 c.tabs.width = '15%'
 c.tabs.show = 'multiple'
+c.tabs.title.format = '{audio}{index}: {current_title}'
+c.tabs.title.format_pinned = c.tabs.title.format
+c.tabs.last_close = 'close'
+c.tabs.pinned.frozen = False
+c.tabs.pinned.shrink = True
 
 c.colors.tabs.bar.bg = '#200020'
 c.colors.tabs.even.bg = '#440066'
@@ -21,6 +27,10 @@ c.colors.tabs.selected.even.fg: 'gold'
 c.colors.tabs.selected.odd.fg: 'gold'
 c.colors.tabs.pinned.selected.even.fg: 'gold'
 c.colors.tabs.pinned.selected.odd.fg: 'gold'
+
+c.search.incremental = False
+c.statusbar.show = 'always'
+c.url.start_pages = 'about:blank'
 
 c.bindings.commands = {
     'normal': {
