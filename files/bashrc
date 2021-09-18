@@ -225,6 +225,15 @@ if exists pacman; then
     alias R='sudo pacman -R'
 fi
 
+if exists pacaur; then
+    alias Syua='pacaur -Syua'
+    alias Scca='pacaur -Scca'
+    alias Sca='pacaur -Sca'
+    alias Ssa='pacaur -Ssa'
+    alias Sa='pacaur -Sa'
+    alias Ra='pacaur -Ra'
+fi
+
 if exists python3; then
     alias py3='python3'
 fi
