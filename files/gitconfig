@@ -36,3 +36,5 @@
     rebase = false
 [log]
     graphColors = bold red,bold green,bold yellow,bold blue,bold magenta,bold cyan,bold white
+[credential]
+    helper = store
