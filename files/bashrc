@@ -187,7 +187,7 @@ if exists java; then
 fi
 
 if exists luarocks; then
-    eval $(luarocks path --bin)
+    eval $(luarocks path --bin --lua-version 5.1)
     export LUA_PATH="./?.lua;$LUA_PATH"
 fi
 
