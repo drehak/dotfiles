@@ -353,6 +353,10 @@ if [[ "$HOSTNAME" = erigona.fi.muni.cz ]]; then
     export PS1='\[\e[93m\]\u\[\e[m\]@\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] \[\e[93m\]\\$\[\e[m\] '
 fi
 
+if [ "$HOSTNAME" = proto09-beta ]; then
+    export PS1='\[\e[97m\]\u\[\e[96m\]@\[\e[97m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[91m\]\w\[\e[m\] '
+fi
+
 if [ "$HOSTNAME" = deimos ] || [ "$HOSTNAME" = enceladus ]; then
     export PS1='\[\e[93m\]\u\[\e[m\]@\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] \[\e[93m\]\\$\[\e[m\] '
 fi
