@@ -19,3 +19,6 @@ let $PAGER = 'most'
 
 " bind w!! to get sudo rights and save file
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" open help in a new tab instead of a split window
+cnoremap help tab help
