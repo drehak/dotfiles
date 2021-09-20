@@ -24,14 +24,17 @@
     ps = push
     ph = push
     rb = rebase
+    rba = rebase --abort
     rbc = rebase --continue
+    rbe = rebase --edit-todo
     rbi = rebase --interactive
+    rbs = rebase --skip
     sh = show
     shw = show --word-diff=color
     shc = show --word-diff=color --word-diff-regex=.
 
     patch = commit --amend --no-edit
-    mbfp = merge-base --fork-point  # the fuck was this
+    mbfp = merge-base --fork-point  # show last common ancestor of two branches
 [pull]
     rebase = false
 [log]
