@@ -10,9 +10,7 @@ set softtabstop=4
 set softtabstop=4
 set tabpagemax=100
 set tabstop=4
-
-" bash aliases and functions (mainly for my1mt)
-let $BASH_ENV = "~/.bash_aliases"
+set hlsearch
 
 " colors for man pages
 let $PAGER = 'most'
