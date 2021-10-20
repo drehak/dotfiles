@@ -169,6 +169,9 @@ if exists git; then
     alias gits='git status'
     alias gitas='git add . && git status'
     alias oneline='git log --oneline'
+    gcld () {
+        git clone "$1" && cd "$(basename "$_" .git)"
+    }
     ghclone () {
         git clone "https://github.com/$1/$2"
     }
