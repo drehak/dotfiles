@@ -369,14 +369,11 @@ if [ "$HOSTNAME" = localhost ]; then  # probably termux
 fi
 
 if [ "$HOSTNAME" = redtwo ]; then
+    export PS1='\[\e[97m\]\u\[\e[96m\]@\[\e[97m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[91m\]\w\[\e[m\] '
     rover () {
         $BROWSER "https://rover.redhat.com/people/profile/$1"
     }
     alias django='PES_DEVEL=1 ./manage.py'
-fi
-
-if [ "$HOSTNAME" = redtwo ]; then
-    export PS1='\[\e[97m\]\u\[\e[96m\]@\[\e[97m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[91m\]\w\[\e[m\] '
 fi
 
 if [[ "$HOSTNAME" =~ leapp-20* ]]; then  # leapp vagrant boxes
