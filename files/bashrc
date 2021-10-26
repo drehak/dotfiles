@@ -370,6 +370,8 @@ fi
 
 if [ "$HOSTNAME" = redtwo ]; then
     export PS1='\[\e[97m\]\u\[\e[96m\]@\[\e[97m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[91m\]\w\[\e[m\] '
+    export PATH="~/.local/bin:$PATH"
+
     rover () {
         $BROWSER "https://rover.redhat.com/people/profile/$1"
     }
