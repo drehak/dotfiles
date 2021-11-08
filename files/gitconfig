@@ -20,6 +20,10 @@
     lga = log --graph --all
     lgo = log --graph --oneline
     lgao = log --graph --all --oneline
+    lgs = log --graph --stat
+    lgas = log --graph --all --stat
+    lgos = log --graph --oneline --stat
+    lgaos = log --graph --all --oneline --stat
     pl = pull
     ps = push
     ph = push
