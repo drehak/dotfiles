@@ -235,6 +235,9 @@ if exists pacman; then
     alias Ss='pacman -Ss'
     alias S='sudo pacman -S'
     alias R='sudo pacman -R'
+    if exists downgrade; then
+        alias D='sudo downgrade'
+    fi
 fi
 
 if exists pacaur; then
