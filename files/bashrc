@@ -285,6 +285,9 @@ fi
 if exists task; then
     alias t='task'
     alias taskrc='vim ~/.taskrc'
+    if exists taskwarrior-tui; then
+        alias tui='taskwarrior-tui'
+    fi
 fi
 
 if exists tmux; then
