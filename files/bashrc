@@ -48,10 +48,8 @@ else
     export EDITOR=vi  # I mean, it's almost everywhere
 fi
 
-if exists drb; then
-    export BIBLE=drb
-elif exists kjv; then
-    export BIBLE=kjv
+if exists dircolors; then
+    eval $(dircolors)
 fi
 
 bashrc() {
