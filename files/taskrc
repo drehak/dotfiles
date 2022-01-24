@@ -13,24 +13,14 @@
 # Files
 data.location=~/.task
 
-# Color theme (uncomment one to use)
-#include /usr/share/task/light-16.theme
-#include /usr/share/task/light-256.theme
-# include /usr/share/task/dark-16.theme
 include /usr/share/doc/task/rc/dark-16.theme
 color.due=magenta
 color.due.today=red
 #color.overdue=bold red
-#include /usr/share/task/dark-256.theme
-#include /usr/share/task/dark-red-256.theme
-#include /usr/share/task/dark-green-256.theme
-#include /usr/share/task/dark-blue-256.theme
-#include /usr/share/task/dark-violets-256.theme
-#include /usr/share/task/dark-yellow-green.theme
-#include /usr/share/task/dark-gray-256.theme
-#include /usr/share/task/dark-gray-blue-256.theme
-#include /usr/share/task/solarized-dark-256.theme
-#include /usr/share/task/solarized-light-256.theme
-#include /usr/share/task/no-color.theme
+color.blocked=
+color.blocking=
 
 news.version=2.6.0
+
+urgency.blocking.coefficient=4.0 # blocking other tasks, default 8.0
+urgency.blocked.coefficient=-5.0 # blocked by other tasks, default -5.0
