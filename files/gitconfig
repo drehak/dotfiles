@@ -14,6 +14,10 @@
     cmm = commit -m
     cm = commit --verbose
     cma = commit --verbose --amend
+    cp = cherry-pick
+    cpa = cherry-pick --abort
+    cpc = cherry-pick --continue
+    cps = cherry-pick --skip
     dc = diff --cached
     fall = fetch --all
     lg = log --graph
