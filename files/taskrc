@@ -24,3 +24,8 @@ news.version=2.6.0
 
 urgency.blocking.coefficient=4.0 # blocking other tasks, default 8.0
 urgency.blocked.coefficient=-5.0 # blocked by other tasks, default -5.0
+urgency.uda.priority.H.coefficient=6.0 # high Priority, default 6.0
+urgency.uda.priority.M.coefficient=0.0 # medium Priority, default 3.9
+urgency.uda.priority.L.coefficient=-3.0 # low Priority, default 1.8
+
+weekstart=monday
