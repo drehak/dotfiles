@@ -362,6 +362,7 @@ if [ "$HOSTNAME" = aisa.fi.muni.cz ] || [[ "$HOSTNAME" =~ nymfe* ]]; then
     export CXX="clang++"
     export LANG="cs_CZ.UTF-8"
     ulimit -c 0
+    module add gcc-10.2
     module add llvm-5.0.0
     module add cmake-3.6.2
     module add gcovr-3.3
