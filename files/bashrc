@@ -308,6 +308,10 @@ if exists tty-clock; then
     alias tty-clock="tty-clock -cC 5"
 fi
 
+if exists ulozto-downloader; then
+    alias ulozto-downloader="ulozto-downloader --parts 5"
+fi
+
 if exists vagrant; then
     alias vdes='vagrant destroy -f'
     alias vhalt='vagrant halt'
