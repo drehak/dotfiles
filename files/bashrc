@@ -290,6 +290,10 @@ if exists task; then
     fi
 fi
 
+if exists timew; then
+    alias tw='timew'
+fi
+
 if exists tmux; then
     alias tmuxrc='vim ~/.tmux.conf'
 fi
