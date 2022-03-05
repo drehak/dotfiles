@@ -50,6 +50,9 @@ fi
 
 if exists dircolors; then
     eval $(dircolors)
+    # also make sticky/other-writable directories look the same as normal ones
+    LS_COLORS="$LS_COLORS:tw=01;34:ow=01;34:st=01;34;"
+    export LS_COLORS
 fi
 
 bashrc() {
