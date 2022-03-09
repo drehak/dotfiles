@@ -20,3 +20,9 @@ cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " open help in a new tab instead of a split window
 cnoremap help tab help
+
+" disable YCM
+" let g:loaded_youcompleteme = 1
+
+cnoremap nus set nu rnu
+cnoremap nonus set nonu nornu
