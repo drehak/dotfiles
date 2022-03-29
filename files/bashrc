@@ -81,7 +81,7 @@ mkcdir () {
 
 n() {
      local threshold=16
-     local file=~/notes
+     local file=~/.notes
      local lines
 
      if [ "$1" != "" ]; then
@@ -197,11 +197,6 @@ fi
 
 if exists java; then
     export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true'
-fi
-
-if exists luarocks; then
-    eval $(luarocks path --bin --lua-version 5.1)
-    export LUA_PATH="./?.lua;$LUA_PATH"
 fi
 
 if exists morf; then
