@@ -18,15 +18,15 @@ c.colors.tabs.bar.bg = '#200020'
 c.colors.tabs.even.bg = '#440066'
 c.colors.tabs.odd.bg = '#662299'
 
-c.colors.tabs.pinned.even.bg: 'dodgerblue'
-c.colors.tabs.pinned.odd.bg: 'deepskyblue'
-c.colors.tabs.selected.even.bg: 'black'
-c.colors.tabs.selected.odd.bg: 'black'
+c.colors.tabs.pinned.even.bg = 'dodgerblue'
+c.colors.tabs.pinned.odd.bg = 'deepskyblue'
+c.colors.tabs.selected.even.bg = 'black'
+c.colors.tabs.selected.odd.bg = 'black'
 
-c.colors.tabs.selected.even.fg: 'gold'
-c.colors.tabs.selected.odd.fg: 'gold'
-c.colors.tabs.pinned.selected.even.fg: 'gold'
-c.colors.tabs.pinned.selected.odd.fg: 'gold'
+c.colors.tabs.selected.even.fg = 'gold'
+c.colors.tabs.selected.odd.fg = 'gold'
+c.colors.tabs.pinned.selected.even.fg = 'gold'
+c.colors.tabs.pinned.selected.odd.fg = 'gold'
 
 c.search.incremental = False
 c.statusbar.show = 'always'

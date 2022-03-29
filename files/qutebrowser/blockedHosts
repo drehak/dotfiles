@@ -1,6 +1,10 @@
-#0.0.0.0         twitter.com
-#0.0.0.0         www.twitter.com
-#0.0.0.0         mobile.twitter.com
+0.0.0.0         twitter.com
+0.0.0.0         www.twitter.com
+0.0.0.0         mobile.twitter.com
+0.0.0.0         reddit.com
+0.0.0.0         www.reddit.com
+0.0.0.0         youtube.com
+0.0.0.0         www.youtube.com
 
 0.0.0.0         beeg.com
 0.0.0.0         www.beeg.com
@@ -24,5 +28,3 @@
 0.0.0.0         www.xnxx.com
 0.0.0.0         porngo.com
 0.0.0.0         www.porngo.com
-#0.0.0.0         reddit.com
-#0.0.0.0         www.reddit.com
