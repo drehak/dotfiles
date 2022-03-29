@@ -11,5 +11,6 @@ install_if_exists  qutebrowser  files/qutebrowser/config.py      ~/.config/quteb
 install_if_exists  qutebrowser  files/qutebrowser/blockedHosts   ~/.config/qutebrowser/blockedHosts
 install_if_exists  redshift     files/redshift.conf              ~/.config/redshift.conf
 install_if_exists  task         files/taskrc                     ~/.taskrc
+install_if_exists  timew        files/timewarrior.cfg            ~/.timewarrior/timewarrior.cfg
 install_if_exists  tmux         files/tmux.conf                  ~/.tmux.conf
 install_if_exists  vim          files/vimrc                      ~/.vimrc
