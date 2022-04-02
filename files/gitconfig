@@ -14,7 +14,7 @@
     cmm = commit --message
     cm = commit --verbose
     cma = commit --verbose --amend
-    cmam = commit -a --message
+    cmam = commit --all --message
     cp = cherry-pick
     cpa = cherry-pick --abort
     cpc = cherry-pick --continue
@@ -37,6 +37,7 @@
     rbc = rebase --continue
     rbe = rebase --edit-todo
     rbi = rebase --interactive
+    rbias = rebase --interactive --autosquash
     rbs = rebase --skip
     rest = restore --staged
     sh = show
