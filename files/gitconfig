@@ -8,12 +8,13 @@
 [alias]
     aliases = config --get-regexp alias.*
 
-    bra = branch -avv
+    bra = branch --all vv
     brv = branch -vv
     co = checkout
-    cmm = commit -m
+    cmm = commit --message
     cm = commit --verbose
     cma = commit --verbose --amend
+    cmam = commit -a --message
     cp = cherry-pick
     cpa = cherry-pick --abort
     cpc = cherry-pick --continue
