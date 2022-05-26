@@ -257,6 +257,9 @@ if exists rtorrent; then
 fi
 
 if exists sox; then
+    alias ding="play -n -c1 synth 0.1 sine 880 vol 0.1"
+    alias megading="play -n -c1 synth 0.1 sine 880 vol 1"
+
     # generate a beep every 5 seconds (higher pitch every 20 seconds)
     # the fine timing might be off on other machines
     beepwatch() {
