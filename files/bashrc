@@ -17,6 +17,9 @@ export HISTSIZE=
 shopt -s histappend
 shopt -s checkwinsize
 
+# vi mode
+set -o vi
+
 exists() {
     command -v "$1" >/dev/null
     return $?
