@@ -8,6 +8,7 @@
 [alias]
     aliases = config --get-regexp alias.*
 
+    br = branch
     bra = branch --all vv
     brv = branch -vv
     co = checkout
@@ -20,6 +21,8 @@
     cpc = cherry-pick --continue
     cps = cherry-pick --skip
     dc = diff --cached
+    ds = diff --stat
+    dcs = diff --cached --stat
     fall = fetch --all
     lg = log --graph
     lga = log --graph --all
@@ -43,11 +46,14 @@
     sh = show
     shw = show --word-diff=color
     shc = show --word-diff=color --word-diff-regex=.
+    shs = show --stat
 
     patch = commit --amend --no-edit
+    apatch = commit --all --amend --no-edit
+
     mbfp = merge-base --fork-point  # show last common ancestor of two branches
 [pull]
-    rebase = false
+    rebase = true
 [log]
     graphColors = bold red,bold green,bold yellow,bold blue,bold magenta,bold cyan,bold white
 [credential]
@@ -55,3 +61,5 @@
 [stash]
     showStat = true
     showPatch = true
+[init]
+	defaultBranch = master
