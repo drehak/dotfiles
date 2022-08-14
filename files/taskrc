@@ -19,6 +19,9 @@ news.version=2.6.0
 # Add "focus" priority - for indefinite tasks, always on top
 uda.priority.values=H,M,L,F
 
+# Do not nag
+nag=
+
 # Colors
 include /usr/share/doc/task/rc/dark-16.theme
 color.due=magenta
