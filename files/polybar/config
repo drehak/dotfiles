@@ -41,9 +41,9 @@ font-1 = fixed:pixelsize=10;1
 font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-3 = siji:pixelsize=10;1
 
-modules-left = i3
+modules-left = i3 task
 modules-center = cmus
-modules-right = filesystem xbacklight alsa xkeyboard memory cpu wlan eth battery temperature wttr date
+modules-right = timew filesystem xbacklight alsa xkeyboard memory cpu wlan eth battery temperature wttr date
 
 tray-position = right
 tray-padding = 0
@@ -327,31 +327,39 @@ menu-2-1-exec = menu-open-0
 
 [module/xbacklight]
 type = internal/xbacklight
-
 format = <label> <bar>
 label = BL
 
 [module/wttr]
 type = custom/script
-
 exec = curl -s wttr.in/Brno?format=%t
-interval = 60
-
+interval = 300
 format = <label>
 format-underline = #00c000
 label = %output%
 
 [module/cmus]
 type = custom/script
-
 exec = sh ~/.config/polybar/cmus.sh
 exec-if = pgrep -x cmus
-interval = 0.5
-
+interval = 1
+format = <label>
+label = %output%
 click-left = cmus-remote --pause
 click-right = cmus-remote --stop
 
+[module/task]
+type = custom/script
+exec = sh ~/.config/polybar/task.sh
+interval = 10
 format = <label>
-label = %output%
+click-left = task "$((`cat /tmp/tw_polybar_id`))" done
+
+[module/timew]
+type = custom/script
+exec = sh ~/.config/polybar/timew.sh
+interval = 1
+format = <label>
+click-left = timew stop
 
 ; vim:ft=dosini
