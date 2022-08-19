@@ -1,4 +1,4 @@
-all: help
+all: setup
 
 help:
 	@echo "Usage: make <target>"
@@ -6,6 +6,7 @@ help:
 	@echo "Available targets are:"
 	@echo "  setup             set up the dotfiles"
 	@echo "  test              run shellcheck on shell scripts"
+	@echo "  help              show this help"
 
 setup:
 	./setup.sh
