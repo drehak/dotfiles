@@ -7,6 +7,7 @@ install_if_exists  polybar      files/polybar/config             ~/.config/polyb
 install_if_exists  polybar      files/polybar/cmus.sh            ~/.config/polybar/cmus.sh
 install_if_exists  polybar      files/polybar/task.sh            ~/.config/polybar/task.sh
 install_if_exists  polybar      files/polybar/timew.sh           ~/.config/polybar/timew.sh
+install_if_exists  polybar      files/polybar/wttr.sh            ~/.config/polybar/wttr.sh
 # TODO find a way to create necessary directories (like here)
 install_if_exists  polybar      files/polybar/launch_polybar.sh  ~/scripts/launch_polybar.sh
 install_if_exists  qutebrowser  files/qutebrowser/config.py      ~/.config/qutebrowser/config.py

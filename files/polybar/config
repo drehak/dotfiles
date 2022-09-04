@@ -33,6 +33,7 @@ border-color = #00000000
 padding-left = 0
 padding-right = 0
 
+;module-margin-left = 2
 module-margin-left = 3
 module-margin-right = 0
 
@@ -86,7 +87,6 @@ type = internal/fs
 interval = 25
 
 mount-0 = /
-;mount-1 = /media
 
 label-mounted = %{F#0a81f5}%mountpoint%%{F-} %free%
 label-unmounted = %mountpoint% not mounted
@@ -105,6 +105,7 @@ wrapping-scroll = false
 ; Only show workspaces on the same output as the bar
 pin-workspaces = true
 
+;label-mode-padding = 1
 label-mode-padding = 2
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
@@ -117,6 +118,7 @@ label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
+;label-unfocused-padding = 1
 label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
@@ -261,20 +263,16 @@ format-discharging-underline = ${self.format-charging-underline}
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = #
-ramp-capacity-1 = <
-ramp-capacity-2 = >
+ramp-capacity-0 = -
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = #
-animation-charging-1 = <
-animation-charging-2 = >
+animation-charging-0 = -
+animation-charging-1 = /
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
-animation-discharging-0 = >
-animation-discharging-1 = <
-animation-discharging-2 = #
+animation-discharging-0 = -
+animation-discharging-1 = \
 animation-discharging-foreground = ${colors.foreground-alt}
 animation-discharging-framerate = 750
 
@@ -332,7 +330,7 @@ label = BL
 
 [module/wttr]
 type = custom/script
-exec = curl -s wttr.in/Brno?format=%t
+exec = sh ~/.config/polybar/wttr.sh
 interval = 300
 format = <label>
 format-underline = #00c000
