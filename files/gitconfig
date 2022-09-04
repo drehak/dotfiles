@@ -16,6 +16,7 @@
     cm = commit --verbose
     cma = commit --verbose --amend
     cmam = commit --all --message
+    cmf = commit --message '' --fixup
     cp = cherry-pick
     cpa = cherry-pick --abort
     cpc = cherry-pick --continue
