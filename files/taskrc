@@ -35,7 +35,15 @@ color.uda.priority.F=bold cyan
 urgency.blocking.coefficient=4.0 # blocking other tasks, default 8.0
 urgency.blocked.coefficient=-5.0 # blocked by other tasks, default -5.0
 urgency.uda.priority.L.coefficient=-3.0 # low Priority, default 1.8
-urgency.uda.priority.M.coefficient=0.0 # medium Priority, default 3.9
+urgency.uda.priority.M.coefficient=3.0 # medium Priority, default 3.9
 urgency.uda.priority.H.coefficient=6.0 # high Priority, default 6.0
 urgency.uda.priority.F.coefficient=25.0
 rule.precedence.color=uda.priority.F,deleted,completed,active,keyword.,tag.,project.,overdue,scheduled,due.today,due,blocked,blocking,recurring,tagged,uda.
+
+# For tasksh reviews
+uda.reviewed.type=date
+uda.reviewed.label=Reviewed
+report._reviewed.description=Tasksh review report. Adjust the filter to your needs.
+report._reviewed.columns=uuid
+report._reviewed.sort=reviewed+,modified+
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
