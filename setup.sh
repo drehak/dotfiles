@@ -96,10 +96,15 @@ install() {
     return 0
 }
 
+exists() {
+    command -v "$1" >/dev/null
+    return $?
+}
+
 install_if_exists() {
     # copies file at $2 to $3 if the command at $1 exists
     # return: 2 if not installed, else passed from `install`
-    if command -v "$1" >/dev/null; then
+    if exists "$1"; then
         install "$2" "$3"
         return "$?"
     else
