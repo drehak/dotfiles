@@ -11,6 +11,11 @@ if ! shopt -oq posix; then
     fi
 fi
 
+# Local definitions that I don't want to commit
+if [ -f ~/.bashrc.local ]; then
+    . ~/.bashrc.local
+fi
+
 # Unlimited history
 export HISTFILESIZE=
 export HISTSIZE=
