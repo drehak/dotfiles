@@ -28,8 +28,8 @@ cnoremap nus set nu rnu
 cnoremap nonus set nonu nornu
 
 " calendar.vim
-source ~/.cache/calendar.vim/credentials.vim
-let g:calendar_google_calendar=1
-let g:calendar_first_day='monday'
-let g:calendar_date_endian='big'
-let g:calendar_date_separator='-'
+" source ~/.cache/calendar.vim/credentials.vim
+" let g:calendar_google_calendar=1
+" let g:calendar_first_day='monday'
+" let g:calendar_date_endian='big'
+" let g:calendar_date_separator='-'
