@@ -237,6 +237,10 @@ elif exists man && [ "$(type -t man)" != function ]; then
     }
 fi
 
+if exists nvm; then
+    source /usr/share/nvm/init-nvm.sh
+fi
+
 if exists pacman; then
     alias Syu='sudo pacman -Syu'
     alias Scc='sudo pacman -Scc'
@@ -306,6 +310,16 @@ fi
 
 if exists timew; then
     alias tw='timew'
+
+    timesh() {
+        # inspired by tasksh, could be standalone
+        while read -rp 'timesh> ' LINE; do
+            echo [timew $LINE];
+            timew $LINE;
+            echo;
+        done;
+        echo
+    }
 fi
 
 if exists tmux; then
@@ -409,6 +423,7 @@ fi
 if [ "$HOSTNAME" = redtwo ]; then
     export PS1='\[\e[97m\]\u\[\e[96m\]@\[\e[97m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[91m\]\w\[\e[m\] '
     export PATH="/home/$USER/.local/bin:$PATH"
+    export NODE_OPTIONS=--openssl-legacy-provider
 
     rover () {
         $BROWSER "https://rover.redhat.com/people/profile/$1"
