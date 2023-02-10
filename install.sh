@@ -2,6 +2,9 @@
 # install: copies file at $1 to $2
 # install_if_exists: copies file at $2 to $3 if the command at $1 exists
 install_if_exists  bash         files/bashrc                     ~/.bashrc
+        if exists  cmus;        then mkdir -p                    ~/.config/cmus; fi
+install_if_exists  dunst        files/cmus/autosave              ~/.config/cmus/autosave
+install_if_exists  dunst        files/cmus/synth.theme           ~/.config/cmus/synth.theme
         if exists  dunst;       then mkdir -p                    ~/.config/dunst; fi
 install_if_exists  dunst        files/dunstrc                    ~/.config/dunst/dunstrc
 install_if_exists  git          files/gitconfig                  ~/.gitconfig
