@@ -284,6 +284,7 @@ fi
 
 if exists quartus; then
     export QSYS_ROOTDIR="$HOME/.cache/pacaur/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/21.1/quartus/sopc_builder/bin"
+fi
 
 if exists ranger; then
     alias rr='ranger'
