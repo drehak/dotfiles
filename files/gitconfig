@@ -9,7 +9,7 @@
     aliases = config --get-regexp alias.*
 
     br = branch
-    bra = branch --all vv
+    bra = branch --all -vv
     brv = branch -vv
     co = checkout
     cmm = commit --message
@@ -35,6 +35,7 @@
     lgas = log --graph --all --stat
     lgos = log --graph --oneline --stat
     lgaos = log --graph --all --oneline --stat
+    pf = push --force
     pl = pull
     ps = push
     ph = push
@@ -46,6 +47,12 @@
     rbias = rebase --interactive --autosquash
     rbs = rebase --skip
     rest = restore --staged
+    rs = reset
+    rs1 = reset HEAD~
+    rss = reset --soft
+    rss1 = reset --soft HEAD~
+    rsh = reset --hard
+    rsh1 = reset --hard HEAD~
     sh = show
     shw = show --word-diff=color
     shwc = show --word-diff=color --word-diff-regex=.
@@ -59,11 +66,17 @@
     stss = stash show --stat
 
     patch = commit --amend --no-edit
+    papf = !git commit --amend --no-edit && git push --force
     apatch = commit --all --amend --no-edit
+    plst = !git stash && git pull && git stash pop
 
     mbfp = merge-base --fork-point  # show last common ancestor of two branches
 [pull]
     rebase = true
+[push]
+    autoSetupRemote = true
+[rebase]
+    abbreviateCommands = true
 [log]
     graphColors = bold red,bold green,bold yellow,bold blue,bold magenta,bold cyan,bold white
 [credential]

@@ -76,6 +76,8 @@ cdp () {
     cd -P -- "$1" 
 }
 
+alias dush="du -sh * | sort -h"
+
 alias ls="ls --color=auto"
 alias ll="ls -l --color=auto"
 
@@ -280,6 +282,9 @@ if exists pyenv; then
     eval "$(pyenv init -)"
 fi
 
+if exists quartus; then
+    export QSYS_ROOTDIR="$HOME/.cache/pacaur/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/21.1/quartus/sopc_builder/bin"
+
 if exists ranger; then
     alias rr='ranger'
 fi
@@ -290,8 +295,8 @@ if exists rtorrent; then
 fi
 
 if exists sox; then
-    alias ding="play -n -c1 synth 0.1 sine 880 vol 0.1"
-    alias megading="play -n -c1 synth 0.1 sine 880 vol 1"
+    alias ding="play -qnc1 synth 0.1 sine 880 vol 0.1"
+    alias megading="play -qnc1 synth 0.1 sine 880 vol 1"
 
     # generate a beep every 5 seconds (higher pitch every 20 seconds)
     # the fine timing might be off on other machines
@@ -330,7 +335,7 @@ if exists timew; then
     timesh() {
         # inspired by tasksh, could be standalone
         while read -rp 'timesh> ' LINE; do
-            echo [timew $LINE];
+            echo [timew "$LINE"];
             timew $LINE;
             echo;
         done;
@@ -372,6 +377,8 @@ if exists vagrant; then
 fi
 
 if exists vim; then
+    touch ~/.vimrc.local  # custom definitions
+
     alias vimp='vim -p *'
     alias vimpp='vim -p *.[ch]pp'
     alias vimrc="vim ~/.vimrc"
