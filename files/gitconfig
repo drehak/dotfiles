@@ -11,6 +11,7 @@
     br = branch
     bra = branch --all -vv
     brv = branch -vv
+    brav = branch -avv
     co = checkout
     cmm = commit --message
     cm = commit --verbose
@@ -35,6 +36,7 @@
     lgas = log --graph --all --stat
     lgos = log --graph --oneline --stat
     lgaos = log --graph --all --oneline --stat
+    lgspf = log --graph --stat --pretty=fuller
     pf = push --force
     pl = pull
     ps = push
