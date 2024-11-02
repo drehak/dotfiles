@@ -91,10 +91,6 @@ alias dush="du -sh * | sort -h"
 alias ls="ls --color=auto"
 alias ll="ls -l --color=auto"
 
-math() {
-    echo $(($@))
-}
-
 mkcdir () {
     mkdir -p -- "$1" && cd -- "$1"
 }
@@ -140,11 +136,6 @@ fi
 
 if exists cal; then
     alias cal="cal -m"
-fi
-
-if exists clang; then
-    export CC=clang
-    export CXX=clang++
 fi
 
 if exists curl; then
@@ -223,11 +214,6 @@ if exists luarocks; then
     export LUA_PATH="./?.lua;$LUA_PATH"
 fi
 
-if exists morf; then
-    # morf colors
-    export PRETTY="color"
-fi
-
 if exists most; then
     # Color manual pages
     if exists man; then
@@ -278,17 +264,8 @@ if exists polybar; then
     alias pbc='vim ~/.config/polybar/config'
 fi
 
-if exists quartus; then
-    export QSYS_ROOTDIR="$HOME/.cache/pacaur/quartus-free/pkg/quartus-free-quartus/opt/intelFPGA/21.1/quartus/sopc_builder/bin"
-fi
-
 if exists ranger; then
     alias rr='ranger'
-fi
-
-if exists rtorrent; then
-    stty stop undef
-    stty start undef
 fi
 
 if exists sox; then
@@ -353,10 +330,6 @@ if exists tty-clock; then
     alias tty-clock="tty-clock -cC 5"
 fi
 
-if exists ulozto-downloader; then
-    alias ulozto-downloader="ulozto-downloader --parts 5"
-fi
-
 if exists vagrant; then
     alias vdes='vagrant destroy -f'
     alias vhalt='vagrant halt'
@@ -400,9 +373,9 @@ if exists xclip; then
     alias xclip='xclip -selection c'
 fi
 
-if exists youtube-dl; then
-    alias ytd='youtube-dl'
-    alias ytx='youtube-dl --extract-audio --add-metadata --audio-format vorbis'
+if exists ytdlp; then
+    alias ytd='ytdlp'
+    alias ytx='ytdlp --extract-audio --add-metadata'
 fi
 
 ##### DEVICE SPECIFIC DECLARATIONS #####
@@ -421,14 +394,6 @@ if [ "$HOSTNAME" = aisa.fi.muni.cz ] || [[ "$HOSTNAME" =~ nymfe* ]]; then
     module add gcovr-3.3
 fi
 
-if [[ "$HOSTNAME" = erigona.fi.muni.cz ]]; then
-    export PS1='\[\e[93m\]\u\[\e[m\]@\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] \[\e[93m\]\\$\[\e[m\] '
-fi
-
-if [ "$HOSTNAME" = proto09-beta ]; then
-    export PS1='\[\e[97m\]\u\[\e[96m\]@\[\e[97m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[91m\]\w\[\e[m\] '
-fi
-
 if [ "$HOSTNAME" = deimos ] || [ "$HOSTNAME" = enceladus ]; then
     export PS1='\[\e[93m\]\u\[\e[m\]@\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] \[\e[93m\]\\$\[\e[m\] '
 fi
@@ -437,7 +402,7 @@ if [ "$HOSTNAME" = localhost ]; then  # probably termux
     export PS1='\[\e[93m\]$(headhash 4)\[\e[92m\]$(headbranch)\[\e[93m\]\w\[\e[m\] \[\e[96m\]\\$\[\e[m\] '
 fi
 
-if [ "$HOSTNAME" = redtwo ]; then
+if [[ "$HOSTNAME" =~ red* ]]; then
     if [ "$USER" = root ]; then
         # cyan prompt
         export PS1='\[\e[96m\]\u\[\e[97m\]@\[\e[96m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[91m\]\w\[\e[m\] '
@@ -446,26 +411,4 @@ if [ "$HOSTNAME" = redtwo ]; then
     fi
     export PATH="/home/$USER/.local/bin:$PATH"
     export NODE_OPTIONS=
-
-    rover () {
-        $BROWSER "https://rover.redhat.com/people/profile/$1"
-    }
-    alias django='PES_DEVEL=1 ./manage.py'
-fi
-
-if [[ "$HOSTNAME" =~ leapp-20* ]]; then  # leapp vagrant boxes
-    getPR() {
-        if [[ $(rpm -qa "$1") =~ (PR[0-9]+) ]]; then
-            echo "${BASH_REMATCH[1]:2}"
-            return 0
-        else
-            return 1
-        fi
-    }
-    # https://serverfault.com/a/513372
-    RHEL=$(rpm -q --queryformat '%{VERSION}' $(rpm -qa '(redhat|sl|slf|centos|oraclelinux)-release(|-server|-workstation|-client|-computenode)'))
-    PS1PREFIX='\[\e[91m\]$RHEL \[\e[96m\]'
-    FPR=$(getPR leapp) && PS1PREFIX="${PS1PREFIX}FPR:${FPR} "
-    RPR=$(getPR leapp-repository) && PS1PREFIX="${PS1PREFIX}RPR:${RPR} "
-    export PS1="$PS1PREFIX"'\[\e[97m\]\u\[\e[91m\]@\[\e[95m\]\h \[\e[93m\]$(headhash 6)\[\e[92m\]$(headbranch)\[\e[96m\]\w\[\e[m\] '
 fi
