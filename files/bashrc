@@ -95,28 +95,7 @@ math() {
 }
 
 mkcdir () {
-    mkdir -p -- "$1" && cd -P -- "$1"
-}
-
-n() {
-     local threshold=16
-     local file=~/notes
-     local lines
-
-     if [ "$1" != "" ]; then
-          echo "$@" >> $file
-          return 0
-     fi
-     if [ ! -f $file ]; then
-          echo " === no notes ==="
-          return 1
-     fi
-     lines=$(wc -l < $file)
-     if [ $(( lines > threshold )) = 1 ]; then
-          echo " === last $threshold lines ==="
-     fi
-     tail -n $threshold $file
-     return 0
+    mkdir -p -- "$1" && cd -- "$1"
 }
 
 # color stderr of a command in red
