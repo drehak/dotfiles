@@ -188,6 +188,10 @@ if exists git; then
     }
 fi
 
+if exists go; then
+    export PATH="$PATH:$HOME/go/bin"
+fi
+
 if exists i3; then
     if [ -f ~/.config/i3/config ]; then
         alias i3c='vim ~/.config/i3/config'
@@ -264,10 +268,8 @@ if exists pacaur; then
     alias Ra='pacaur -Ra'
 fi
 
-if exists pyenv; then
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$HOME/.pyenv/shims:$PATH"
-    eval "$(pyenv init -)"
+if exists polybar; then
+    alias pbc='vim ~/.config/polybar/config'
 fi
 
 if exists quartus; then
@@ -303,11 +305,6 @@ fi
 
 if exists sudo; then
     alias fuck='sudo $(history -p \!\!)'
-fi
-
-if exists systemctl; then
-    # No pager for systemctl
-    export SYSTEMD_PAGER=
 fi
 
 if exists task; then

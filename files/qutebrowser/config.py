@@ -1,6 +1,7 @@
 config.load_autoconfig()
 
 c.fonts.default_family = 'Liberation Mono'
+c.fonts.default_size = '9pt'
 
 c.content.blocking.method = 'both'
 c.content.blocking.hosts.lists.append(str(config.configdir) + '/blockedHosts')
@@ -14,19 +15,26 @@ c.tabs.last_close = 'close'
 c.tabs.pinned.frozen = False
 c.tabs.pinned.shrink = True
 
-c.colors.tabs.bar.bg = '#200020'
-c.colors.tabs.even.bg = '#440066'
-c.colors.tabs.odd.bg = '#662299'
+c.content.javascript.clipboard = 'access'
 
-c.colors.tabs.pinned.even.bg = 'dodgerblue'
-c.colors.tabs.pinned.odd.bg = 'deepskyblue'
-c.colors.tabs.selected.even.bg = 'black'
-c.colors.tabs.selected.odd.bg = 'black'
+c.colors.tabs.bar.bg = '#222'
+c.colors.tabs.even.bg = '#4e7071'
+c.colors.tabs.odd.bg = '#4e7071'
 
-c.colors.tabs.selected.even.fg = 'gold'
-c.colors.tabs.selected.odd.fg = 'gold'
-c.colors.tabs.pinned.selected.even.fg = 'gold'
-c.colors.tabs.pinned.selected.odd.fg = 'gold'
+c.colors.tabs.selected.even.bg = '#2e4745'
+c.colors.tabs.selected.even.fg = 'white'
+c.colors.tabs.selected.odd.bg = '#2e4745'
+c.colors.tabs.selected.odd.fg = 'white'
+
+c.colors.tabs.pinned.even.bg = '#ce707e'
+c.colors.tabs.pinned.even.fg = 'white'
+c.colors.tabs.pinned.odd.bg = '#ce707e'
+c.colors.tabs.pinned.odd.fg = 'white'
+
+c.colors.tabs.pinned.selected.even.bg = '#824652'
+c.colors.tabs.pinned.selected.even.fg = 'white'
+c.colors.tabs.pinned.selected.odd.bg = '#824652'
+c.colors.tabs.pinned.selected.odd.fg = 'white'
 
 c.search.incremental = False
 c.statusbar.show = 'always'

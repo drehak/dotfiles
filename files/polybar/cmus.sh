@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cmus-remote -C status | grep stopped >/dev/null && exit 1
-info=$(cmus-remote -C status)
+info=$(cmus-remote -C status) || exit 1
+echo "$info" | grep stopped >/dev/null && exit 1
 max_song_length=41
 
 prepend_zero () {
