@@ -11,10 +11,11 @@ if ! shopt -oq posix; then
     fi
 fi
 
+export PATH="/home/$USER/.local/bin:$PATH"
+
 # Local definitions that I don't want to commit
-if [ -f ~/.bashrc.local ]; then
-    . ~/.bashrc.local
-fi
+touch ~/.bashrc.local
+. ~/.bashrc.local
 
 # Unlimited history
 export HISTFILESIZE=
@@ -150,7 +151,12 @@ if exists curl; then
     alias myip='curl ipinfo.io/ip'
 fi
 
-if exists dnf; then
+if exists dnf5; then
+    alias dnfi="sudo dnf5 install"
+    alias dnfr="sudo dnf5 remove"
+    alias dnfs="dnf5 search"
+    alias dnfu="sudo dnf5 update"
+elif exists dnf; then
     alias dnfi="sudo dnf install"
     alias dnfr="sudo dnf remove"
     alias dnfs="dnf search"
@@ -368,6 +374,8 @@ if exists vim; then
     alias vimp='vim -p *'
     alias vimpp='vim -p *.[ch]pp'
     alias vimrc="vim ~/.vimrc"
+    alias vimspec='vim $(basename $(pwd)).spec'
+
     if exists find; then
         vimpy () {
             vim -p $(find . -iname '*.py')
