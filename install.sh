@@ -8,6 +8,7 @@ install_if_exists  cmus         files/cmus/synth.theme           ~/.config/cmus/
         if exists  dunst;       then mkdir -p                    ~/.config/dunst; fi
 install_if_exists  dunst        files/dunstrc                    ~/.config/dunst/dunstrc
 install_if_exists  git          files/gitconfig                  ~/.gitconfig
+install_if_exists  picom        files/picom.conf                 ~/.config/picom.conf    
         if exists  polybar;     then mkdir -p                    ~/.config/polybar; fi
 install_if_exists  polybar      files/polybar/config             ~/.config/polybar/config
 install_if_exists  polybar      files/polybar/cmus.sh            ~/.config/polybar/cmus.sh
